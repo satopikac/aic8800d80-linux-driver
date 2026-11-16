@@ -24,7 +24,7 @@ This repository contains the AIC8800D80 USB Wi-Fi driver, firmware, Linux 6.8 co
 - Ubuntu 22.04
 - Linux `6.8.0-124-generic`、`6.8.0-138-generic`
 - x86_64
-- AIC8800D80 USB Wi-Fi，VID:PID 为 `a69c:5721`、`a69c:8d80` 或 `a69c:8d83`
+- AIC8800D80 USB Wi-Fi，VID:PID 为 `a69c:5721`、`a69c:8d80`、`a69c:8d83` 或 Tenda U11 `2604:001f`
 
 代码保留了旧内核兼容分支，但其他发行版及内核版本尚未逐一验证。
 
@@ -172,7 +172,7 @@ The current version was tested with:
 - Ubuntu 22.04
 - Linux `6.8.0-124-generic` and `6.8.0-138-generic`
 - x86_64
-- AIC8800D80 USB Wi-Fi with VID:PID `a69c:5721`, `a69c:8d80`, or `a69c:8d83`
+- AIC8800D80 USB Wi-Fi with VID:PID `a69c:5721`, `a69c:8d80`, `a69c:8d83`, or Tenda U11 `2604:001f`
 
 Compatibility branches for older kernels remain in the source, but other distributions and kernel versions have not been tested individually.
 
