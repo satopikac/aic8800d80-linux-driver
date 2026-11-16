@@ -5140,8 +5140,14 @@ cfg80211_chandef_identical(const struct cfg80211_chan_def *chandef1,
 }
 #endif
 
+#ifdef RWNX_SET_MONITOR_CHANNEL_HAS_NETDEV
+static int rwnx_cfg80211_set_monitor_channel(struct wiphy *wiphy,
+                                             struct net_device *dev,
+                                             struct cfg80211_chan_def *chandef)
+#else
 static int rwnx_cfg80211_set_monitor_channel(struct wiphy *wiphy,
                                              struct cfg80211_chan_def *chandef)
+#endif
 {
     struct rwnx_hw *rwnx_hw = wiphy_priv(wiphy);
     struct rwnx_vif *rwnx_vif;
@@ -5635,7 +5641,11 @@ static int rwnx_cfg80211_get_channel(struct wiphy *wiphy,
     if (rwnx_vif->vif_index == rwnx_hw->monitor_vif)
     {
         //retrieve channel from firmware
+#ifdef RWNX_SET_MONITOR_CHANNEL_HAS_NETDEV
+        rwnx_cfg80211_set_monitor_channel(wiphy, wdev->netdev, NULL);
+#else
         rwnx_cfg80211_set_monitor_channel(wiphy, NULL);
+#endif
     }
 
     //Check if channel context is valid

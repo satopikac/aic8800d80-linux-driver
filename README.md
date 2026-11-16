@@ -2,7 +2,7 @@
 
 [中文](#中文说明) | [English](#english)
 
-This repository contains the AIC8800D80 USB Wi-Fi driver, firmware, Linux 6.8 compatibility fixes, and DKMS support. It was built and tested on Ubuntu 22.04 with kernels `6.8.0-124-generic` and `6.8.0-138-generic`, using USB device `a69c:8d80` / `a69c:8d83`.
+This repository contains the AIC8800D80 USB Wi-Fi driver, firmware, Linux 6.8 compatibility fixes, and DKMS support. It was built and tested on Ubuntu 22.04 with kernels `6.8.0-124-generic` and `6.8.0-138-generic`. It also includes the cfg80211 API compatibility fix required by Ubuntu kernel `6.8.0-149-generic`, using USB device `a69c:8d80` / `a69c:8d83`.
 
 本仓库包含 AIC8800D80 USB Wi-Fi 驱动、固件、Linux 6.8 兼容补丁及 DKMS 支持。已在 Ubuntu 22.04、内核 `6.8.0-124-generic` 和 `6.8.0-138-generic`、USB 设备 `a69c:8d80` / `a69c:8d83` 上完成编译及实机验证。
 
@@ -19,10 +19,10 @@ This repository contains the AIC8800D80 USB Wi-Fi driver, firmware, Linux 6.8 co
 
 ### 支持环境
 
-当前版本已验证：
+当前版本已验证或包含兼容修复：
 
 - Ubuntu 22.04
-- Linux `6.8.0-124-generic`、`6.8.0-138-generic`
+- Linux `6.8.0-124-generic`、`6.8.0-138-generic`，以及适用于 `6.8.0-149-generic` 的 cfg80211 兼容修复
 - x86_64
 - AIC8800D80 USB Wi-Fi，VID:PID 为 `a69c:5721`、`a69c:8d80` 或 `a69c:8d83`
 
@@ -167,10 +167,10 @@ sudo udevadm control --reload-rules
 
 ### Supported environment
 
-The current version was tested with:
+The current version was tested with, or includes compatibility fixes for:
 
 - Ubuntu 22.04
-- Linux `6.8.0-124-generic` and `6.8.0-138-generic`
+- Linux `6.8.0-124-generic`, `6.8.0-138-generic`, and the cfg80211 compatibility fix required by `6.8.0-149-generic`
 - x86_64
 - AIC8800D80 USB Wi-Fi with VID:PID `a69c:5721`, `a69c:8d80`, or `a69c:8d83`
 

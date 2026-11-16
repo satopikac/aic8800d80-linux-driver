@@ -1,0 +1,38 @@
+name: Build for Ubuntu 6.8.0-149
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install Ubuntu 6.8.0-149 headers
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes \
+            build-essential \
+            linux-headers-6.8.0-149 \
+            linux-headers-6.8.0-149-generic
+
+      - name: Build kernel modules
+        run: |
+          driver_dir="$GITHUB_WORKSPACE/aic8800_linux_drvier/drivers/aic8800"
+          make -C /usr/src/linux-headers-6.8.0-149-generic \
+            M="$driver_dir" \
+            modules
+
+      - name: Verify artifacts
+        run: |
+          test -s aic8800_linux_drvier/drivers/aic8800/aic_load_fw/aic_load_fw.ko
+          test -s aic8800_linux_drvier/drivers/aic8800/aic8800_fdrv/aic8800_fdrv.ko
+          modinfo aic8800_linux_drvier/drivers/aic8800/aic_load_fw/aic_load_fw.ko
+          modinfo aic8800_linux_drvier/drivers/aic8800/aic8800_fdrv/aic8800_fdrv.ko
